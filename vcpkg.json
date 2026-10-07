@@ -1,0 +1,14 @@
+{
+  "name": "valstream",
+  "version-string": "0.1.0",
+  "description": "Streams changes to Riot's official VALORANT ranked leaderboards in real time.",
+  "builtin-baseline": "2976266a3b2aa358e0eed9e89bde2e0cf59daf0a",
+  "dependencies": [
+    "cpr",
+    "crow",
+    "gtest",
+    "nlohmann-json",
+    "spdlog",
+    "sqlite3"
+  ]
+}

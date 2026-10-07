@@ -1,0 +1,17 @@
+{
+  "status": 429,
+  "headers": {
+    "Retry-After": "7",
+    "X-Rate-Limit-Type": "application",
+    "X-App-Rate-Limit": "20:1,100:120",
+    "X-App-Rate-Limit-Count": "21:1,58:120",
+    "X-Method-Rate-Limit": "250:10",
+    "X-Method-Rate-Limit-Count": "12:10"
+  },
+  "body": {
+    "status": {
+      "message": "Rate limit exceeded",
+      "status_code": 429
+    }
+  }
+}

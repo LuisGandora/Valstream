@@ -1,0 +1,15 @@
+{
+  "regions": ["na", "eu", "ap", "kr", "br", "latam"],
+  "pollIntervalSeconds": 60,
+  "mockPollIntervalSeconds": 5,
+  "statusIntervalSeconds": 300,
+  "actRefreshSeconds": 3600,
+  "topN": 500,
+  "port": 8080,
+  "dbPath": "valstream.db",
+  "mockMode": false,
+  "fixturesDir": "fixtures",
+  "webRoot": "web",
+  "locale": "en-US",
+  "appRateLimit": "20:1,100:120"
+}

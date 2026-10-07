@@ -1,0 +1,78 @@
+{
+  "version": "release-11.08",
+  "characters": [
+    {
+      "name": "Jett",
+      "id": "add6443a-41bd-e414-f6ad-e58d267f4e95",
+      "assetName": "Wushu_PrimaryAsset"
+    },
+    {
+      "name": "Sova",
+      "id": "320b2a48-4d9b-a075-30f1-1f93a9b638fa",
+      "assetName": "Hunter_PrimaryAsset"
+    },
+    {
+      "name": "Omen",
+      "id": "8e253930-4c05-31dd-1b6c-968525494517",
+      "assetName": "Wraith_PrimaryAsset"
+    }
+  ],
+  "maps": [
+    {
+      "name": "Ascent",
+      "id": "7eaecc1b-4337-bbf6-6ab9-04b8f06b3319",
+      "assetName": "Map_Ascent",
+      "assetPath": "/Game/Maps/Ascent/Ascent"
+    },
+    {
+      "name": "Haven",
+      "id": "2bee0dc9-4ffe-519b-1cbd-7fbe763a6047",
+      "assetName": "Map_Triad",
+      "assetPath": "/Game/Maps/Triad/Triad"
+    }
+  ],
+  "gameModes": [
+    {
+      "name": "Standard",
+      "id": "96bd3920-4f36-d026-2b28-c683eb0bcac5",
+      "assetName": "GameMode_Standard"
+    }
+  ],
+  "acts": [
+    {
+      "name": "EPISODE 9",
+      "id": "ec876e6c-43e8-fa63-ffc1-2e8d4db25525",
+      "isActive": false,
+      "type": "episode",
+      "parentId": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "name": "ACT III",
+      "id": "52ca6698-41c1-e7de-4008-8994d2221209",
+      "isActive": false,
+      "type": "act",
+      "parentId": "ec876e6c-43e8-fa63-ffc1-2e8d4db25525"
+    },
+    {
+      "name": "EPISODE 10",
+      "id": "476b0893-4c2e-abd6-c5fe-708facff0772",
+      "isActive": true,
+      "type": "episode",
+      "parentId": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "name": "ACT I",
+      "id": "16118998-4705-5813-86dd-0292a2439d90",
+      "isActive": false,
+      "type": "act",
+      "parentId": "476b0893-4c2e-abd6-c5fe-708facff0772"
+    },
+    {
+      "name": "ACT II",
+      "id": "4c4b8cff-43eb-13d3-8f14-96b783c90cd2",
+      "isActive": true,
+      "type": "act",
+      "parentId": "476b0893-4c2e-abd6-c5fe-708facff0772"
+    }
+  ]
+}

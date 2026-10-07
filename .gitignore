@@ -1,0 +1,10 @@
+build/
+vcpkg_installed/
+.env
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+compile_commands.json
+.vscode/
+.idea/

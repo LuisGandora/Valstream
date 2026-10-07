@@ -1,0 +1,274 @@
+{
+  "shard": "latam",
+  "actId": "4c4b8cff-43eb-13d3-8f14-96b783c90cd2",
+  "totalPlayers": 8871,
+  "players": [
+    {
+      "puuid": "z0mtW-PpvaEFmHr-MhdLlP8aytGinj1864qkMCvykuY7TEB6DFbQ4Ie78YrUcVlw6s9E23fJ7tqcay",
+      "gameName": "Tidal Prism",
+      "tagLine": "7374",
+      "leaderboardRank": 1,
+      "rankedRating": 1089,
+      "numberOfWins": 241,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "uG3gOoDFMQ5wHb8t3p5WnWJTXKpiOFi6dKTh7yq2cy0pIbZwkAAxKwFq9t6omNnPL_I1pTvj3YWyWq",
+      "gameName": "Pale Fable",
+      "tagLine": "8544",
+      "leaderboardRank": 2,
+      "rankedRating": 1063,
+      "numberOfWins": 299,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "D1yrRJ4b06zUYfCWv810rZBmc3-MPIXeHBSYk19fs_AEPSeB3JHDVu-UPGh3359l7XelhDpG9K2uh8",
+      "gameName": "Rogue Lantern",
+      "tagLine": "7338",
+      "leaderboardRank": 3,
+      "rankedRating": 1050,
+      "numberOfWins": 240,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "SdLa32RchzJkCyOFdQ7hCoPzOxr1Dq9hCIYHX4ynxICxBDjxRUsGnFDLO8JjPmE1cp5q8j1YUwGL5h",
+      "gameName": "Sable Tundra",
+      "tagLine": "2186",
+      "leaderboardRank": 4,
+      "rankedRating": 1045,
+      "numberOfWins": 365,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "8olo2pf0_mJPbfv1OhbZfXI2_1d1rYsJEqLWUOTB3rnIXbhd4zQzzuVIQd6YulPcP9zSm1Isyti-_y",
+      "gameName": "Tidal Badger",
+      "tagLine": "1364",
+      "leaderboardRank": 5,
+      "rankedRating": 1042,
+      "numberOfWins": 167,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "6I0ppeLTMvkZds9wv04e0OnBJaJ39M8aR094QkQ9Pn5PzYrnY0JPRu9NDYZPnQC3-GRU6HYbX4ZFVJ",
+      "gameName": "Ivory Comet",
+      "tagLine": "5447",
+      "leaderboardRank": 6,
+      "rankedRating": 1010,
+      "numberOfWins": 265,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "NnxI-uEa9CtuysPU7kch_hh6dlcAlqhvvpqCyRDNlTMuFBv3SQo4hjJgSbTZvpFzzZ47XDktDXW7DA",
+      "gameName": "Dusky Otter",
+      "tagLine": "6234",
+      "leaderboardRank": 7,
+      "rankedRating": 999,
+      "numberOfWins": 188,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "YRJS6OR6HYjvhuPDWWAe9110E5hXoNY78S40POMbIPQ9LNyY3vPMu5Yr-P_kllJ1hEhP-wwHZTZl2u",
+      "gameName": "Pale Falcon",
+      "tagLine": "7947",
+      "leaderboardRank": 8,
+      "rankedRating": 973,
+      "numberOfWins": 300,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "AptnBWM98KJiMVb8QzPUyGymkAGDpe4Wd1uiPHtLzA1AkhNOu6fgSDB5alUWMhV2BLqH4zL2oJ_6AZ",
+      "gameName": "Lucky Canyon",
+      "tagLine": "2559",
+      "leaderboardRank": 9,
+      "rankedRating": 969,
+      "numberOfWins": 124,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "2wvldv1U7hIWd26NZSghXajpbN6j2oIeimPMRHIMR_KUBsuQqSyWLnSFHkJh-ruJCimbeQVIUMRjEu",
+      "gameName": "Rusty Quill",
+      "tagLine": "8363",
+      "leaderboardRank": 10,
+      "rankedRating": 947,
+      "numberOfWins": 123,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "6i5tO5UoZMPKL_GVPNAWJfOR9U3LcagFG4U9ga4D4ebelb2MvlpJD-Eg0hpOiTQCgMVzcQE7zV7W5Q",
+      "gameName": "Echo Basalt",
+      "tagLine": "6075",
+      "leaderboardRank": 11,
+      "rankedRating": 936,
+      "numberOfWins": 210,
+      "competitiveTier": 27
+    },
+    {
+      "leaderboardRank": 12,
+      "rankedRating": 911,
+      "numberOfWins": 141,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "wwvNVyDi4ZZ961bF46VLGG08u7aLt-QZkMcFmOlMUFG9kVR4KJckbV2-S1xcsBDs7cdRwCKiDBnZ9n",
+      "gameName": "Cobalt Signal",
+      "tagLine": "8209",
+      "leaderboardRank": 13,
+      "rankedRating": 905,
+      "numberOfWins": 344,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "kG5IhXUv15tGG9rD2jPkMr24w1jhTku3UE5Ud05qYNeKFlcD4rRyjLyJ-IeOKVXyF-UteP1G3JYNrc",
+      "gameName": "Velvet Vector",
+      "tagLine": "2363",
+      "leaderboardRank": 14,
+      "rankedRating": 884,
+      "numberOfWins": 281,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "ALTYRd099FUAHQWz7whqDfIueL4U09mOi0qrNDriucrYwCctJqq0_phI2n5HMdn82diMLY-FXGUiAm",
+      "gameName": "Sable Sparrow",
+      "tagLine": "5841",
+      "leaderboardRank": 15,
+      "rankedRating": 871,
+      "numberOfWins": 323,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "8Y7P2B8VsIoYvQYl_cOuuDZd-iGKPMTbd4TfyeHGqVykSsQQbrj9bha9XRYqMRjXS49IFD3iuvlQCa",
+      "gameName": "Neon Kettle",
+      "tagLine": "1733",
+      "leaderboardRank": 16,
+      "rankedRating": 862,
+      "numberOfWins": 371,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "SDEyt5Bs3WR1joart5wVuXFih-i3De8o9_TDEvwLPswtbOnxxDRG0_93Mck-sXH3vD-gie43-P5JpJ",
+      "gameName": "Neon Monsoon",
+      "tagLine": "6401",
+      "leaderboardRank": 17,
+      "rankedRating": 836,
+      "numberOfWins": 185,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "qYs_o-TOzi_1q9XNQ-1A08XEjAVCLGQIoEULbN4dcUGMKoyF92aexctRlUGHF53Ymt8ntcIg0v4qvg",
+      "gameName": "Rusty Heron",
+      "tagLine": "8839",
+      "leaderboardRank": 18,
+      "rankedRating": 823,
+      "numberOfWins": 348,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "oEd1HDXwNI_OPvXX43RzXaMBkVohx70Ub1u01y35ro3an7r9fcc0AafbhUrYKTU48ZNzH7536SiR0o",
+      "gameName": "Amber Maple",
+      "tagLine": "6572",
+      "leaderboardRank": 19,
+      "rankedRating": 798,
+      "numberOfWins": 285,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "Af0E82nyiDaxTuV_cqKGlb3ZVPFIKj1NtKA-QKSKdkpuotMaKCXJJAKU2EGuaYlhbFYKulz_56kJnk",
+      "gameName": "Neon Willow",
+      "tagLine": "7059",
+      "leaderboardRank": 20,
+      "rankedRating": 779,
+      "numberOfWins": 259,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "MDOa-S1yQ8UAdX0hgGF48kqdMnbZyW9-2qCNLd3wimaebZQgchcuUeIM6wnF_bVTjWgoX74-us8b52",
+      "gameName": "Vivid Thistle",
+      "tagLine": "2135",
+      "leaderboardRank": 21,
+      "rankedRating": 752,
+      "numberOfWins": 122,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "4Wr2NwZyvs5gp-hOlrutI-a82v7EkdaydiMBmyXUIc6ww100FUbGy1pnQls4-ctMyzXSGCUNQPsl7x",
+      "gameName": "Mellow Quill",
+      "tagLine": "8612",
+      "leaderboardRank": 22,
+      "rankedRating": 744,
+      "numberOfWins": 160,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "LrpQcoVKgrjZQ7P8O4kymV-8jl7dXK4U2PD2iKsyDJB2J8Bsb3IOULga5XGvqOL9Ncg6o4uj_IajJZ",
+      "gameName": "Sable Comet",
+      "tagLine": "8387",
+      "leaderboardRank": 23,
+      "rankedRating": 717,
+      "numberOfWins": 234,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "hPMzv6zf0BQ0cAedTGT114Az9pqbat4Bfduib7TJrEto_bVGoTUzvQAZa-6vvT75gzs5qStbOBVtu5",
+      "gameName": "Amber Thistle",
+      "tagLine": "6178",
+      "leaderboardRank": 24,
+      "rankedRating": 704,
+      "numberOfWins": 192,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "NnDIpA7gHK_HSr_kb-ny_kiWRVxnIz65orytqzQtZBwR9udT6ycqrx2ZjSqxCEA4ZAQ42vrzGL4Vxs",
+      "gameName": "Tidal Badger",
+      "tagLine": "7617",
+      "leaderboardRank": 25,
+      "rankedRating": 674,
+      "numberOfWins": 100,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "M8w4IsNZOBELAmFl2_E5yXDD4546ladB6ioX2z8NNh47h7GAtsaAwsUX2NGyxaem6Ic8lugR32Fa7G",
+      "gameName": "Neon Harbor",
+      "tagLine": "1737",
+      "leaderboardRank": 26,
+      "rankedRating": 668,
+      "numberOfWins": 125,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "qpVDUtrifAjCGAj57F7LvB_vOhXlecNorQNPHSUXfupGHV-mYITllNUZFCuNw265tta33rScoSqyJe",
+      "gameName": "Tidal Monsoon",
+      "tagLine": "3221",
+      "leaderboardRank": 27,
+      "rankedRating": 658,
+      "numberOfWins": 220,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "G0elMMEPoCQ6h23Dg7avDbHPL0MpDv8fD_PKd-Id8AdRJdhBAr2qhyr5cEJr7WwHrMli5KC3dbNNgs",
+      "gameName": "Quiet Otter",
+      "tagLine": "7199",
+      "leaderboardRank": 28,
+      "rankedRating": 630,
+      "numberOfWins": 175,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "x76tif_8cdoSsZw3Z3I9oEYiYLpd7SeFuZvjp9X_4L1HfB-wL0Dy7_mCA3tuDLywoLTDy6DW8o-lsS",
+      "gameName": "Gilded Tundra",
+      "tagLine": "1921",
+      "leaderboardRank": 29,
+      "rankedRating": 628,
+      "numberOfWins": 118,
+      "competitiveTier": 27
+    },
+    {
+      "puuid": "2hv2mTB4i1TnUubRGz8vLfkHoxTn8jpELbgxGMR0U0X_utgrPvSip-XyeBdSuNtHDMR8LFg-BPzER7",
+      "gameName": "Hollow Cinder",
+      "tagLine": "2043",
+      "leaderboardRank": 30,
+      "rankedRating": 621,
+      "numberOfWins": 138,
+      "competitiveTier": 27
+    }
+  ]
+}

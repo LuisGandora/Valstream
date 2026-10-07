@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>valstream</title>
+<style>
+  :root {
+    --bg: #0f1419; --panel: #171e26; --line: #26303b; --text: #e6e9ed; --muted: #8a96a3;
+    --up: #3ecf8e; --down: #ff5c5c; --new: #4da3ff; --out: #8a96a3; --rr: #f5b942; --accent: #ff4655;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+  h1 { margin: 0; font-size: 18px; letter-spacing: .5px; }
+  h1 span { color: var(--accent); }
+  h2 { margin: 0 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .pill { font-size: 12px; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+  .pill.live { color: var(--up); border-color: var(--up); }
+  .pill.mock { color: var(--rr); border-color: var(--rr); }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 16px 20px; }
+  @media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; min-width: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .chip { background: none; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px;
+          font: inherit; font-size: 12px; text-transform: uppercase; cursor: pointer; }
+  .chip[aria-pressed="true"] { color: var(--text); border-color: var(--accent); background: rgba(255, 70, 85, .12); }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  #feed { list-style: none; margin: 0; padding: 0; max-height: 70vh; overflow-y: auto; }
+  #feed li { display: grid; grid-template-columns: 96px 44px minmax(0, 1fr) auto; gap: 8px; align-items: baseline;
+             padding: 7px 4px; border-bottom: 1px solid var(--line); animation: in .35s ease-out; }
+  @keyframes in { from { background: rgba(255, 255, 255, .06); } to { background: none; } }
+  .type { font-size: 11px; font-weight: 600; letter-spacing: .5px; }
+  .RANK_UP .type { color: var(--up); } .RANK_DOWN .type { color: var(--down); } .NEW_ENTRY .type { color: var(--new); }
+  .DROPPED_OUT .type { color: var(--out); } .RR_CHANGE .type { color: var(--rr); }
+  .region { font-size: 11px; color: var(--muted); text-transform: uppercase; }
+  .what { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .time { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .name { font-weight: 600; } .tag { color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  th { font-size: 11px; color: var(--muted); text-transform: uppercase; font-weight: 500; }
+  td.num, th.num { text-align: right; }
+  tr.flash td { animation: flash 2s ease-out; }
+  @keyframes flash { from { background: rgba(245, 185, 66, .25); } to { background: none; } }
+  .empty { color: var(--muted); padding: 16px 4px; }
+  footer { padding: 4px 20px 20px; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>val<span>stream</span></h1>
+  <span id="conn" class="pill">connecting…</span>
+  <span id="mode" class="pill" hidden>mock mode</span>
+</header>
+
+<main>
+  <section aria-labelledby="feed-title">
+    <h2 id="feed-title">Live events</h2>
+    <div class="chips" id="feed-regions" role="group" aria-label="Filter events by region"></div>
+    <ul id="feed" aria-live="polite"></ul>
+    <p class="empty" id="feed-empty">Waiting for leaderboard changes…</p>
+  </section>
+
+  <section aria-labelledby="board-title">
+    <h2 id="board-title">Top 20</h2>
+    <div class="chips" id="board-regions" role="group" aria-label="Leaderboard region"></div>
+    <table>
+      <thead><tr><th class="num">#</th><th>Player</th><th class="num">RR</th><th class="num">Wins</th></tr></thead>
+      <tbody id="board"></tbody>
+    </table>
+    <p class="empty" id="board-empty" hidden>No snapshot for this region yet.</p>
+  </section>
+</main>
+
+<footer>Data from Riot's official VALORANT API (ranked leaderboards). Not endorsed by Riot Games.</footer>
+
+<script>
+"use strict";
+const REGIONS = ["na", "eu", "ap", "kr", "br", "latam"];
+const MAX_FEED = 200;
+const $ = (id) => document.getElementById(id);
+
+const state = {
+  feedRegions: new Set(),  // empty = all regions
+  boardRegion: "na",
+  ws: null,
+  retryMs: 500,
+};
+
+// ---- helpers (all API strings go through textContent, never innerHTML) ----
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+function playerNode(e) {
+  const span = el("span");
+  if (!e.gameName) { span.append(el("span", "name", "Anonymous")); return span; }
+  span.append(el("span", "name", e.gameName));
+  if (e.tagLine) span.append(el("span", "tag", "#" + e.tagLine));
+  return span;
+}
+
+function describe(e) {
+  const rr = (a, b) => `${b - a >= 0 ? "+" : ""}${b - a} RR`;
+  switch (e.type) {
+    case "RANK_UP":     return ` climbed #${e.oldRank} → #${e.newRank}`;
+    case "RANK_DOWN":   return ` fell #${e.oldRank} → #${e.newRank}`;
+    case "NEW_ENTRY":   return ` entered at #${e.newRank} (${e.newRR} RR)`;
+    case "DROPPED_OUT": return ` dropped out from #${e.oldRank}`;
+    case "RR_CHANGE":   return ` ${rr(e.oldRR, e.newRR)} at #${e.newRank} (${e.newRR} RR)`;
+    default:            return " " + e.type;
+  }
+}
+
+function timeOf(ms) {
+  return new Date(ms).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+}
+
+// ---- feed ----
+function visible(e) { return state.feedRegions.size === 0 || state.feedRegions.has(e.region); }
+
+function addEvent(e, prepend = true) {
+  const li = el("li", e.type);
+  li.dataset.region = e.region;
+  li.hidden = !visible(e);
+  const what = el("span", "what");
+  what.append(playerNode(e), document.createTextNode(describe(e)));
+  li.append(el("span", "type", e.type.replace("_", " ")), el("span", "region", e.region), what,
+            el("span", "time", timeOf(e.timestamp)));
+  const feed = $("feed");
+  prepend ? feed.prepend(li) : feed.append(li);
+  while (feed.children.length > MAX_FEED) feed.lastElementChild.remove();
+  updateFeedEmpty();
+}
+
+function updateFeedEmpty() {
+  $("feed-empty").hidden = [...$("feed").children].some((li) => !li.hidden);
+}
+
+function applyFeedFilter() {
+  for (const li of $("feed").children) li.hidden = !visible({ region: li.dataset.region });
+  updateFeedEmpty();
+  subscribe();
+}
+
+// ---- leaderboard table ----
+let boardTimer = null;
+const flashed = new Set();
+
+async function loadBoard() {
+  const region = state.boardRegion;
+  const tbody = $("board");
+  try {
+    const res = await fetch(`/leaderboard/${region}`);
+    if (region !== state.boardRegion) return;  // user switched while loading
+    if (!res.ok) { tbody.replaceChildren(); $("board-empty").hidden = false; return; }
+    const snap = await res.json();
+    $("board-empty").hidden = true;
+    tbody.replaceChildren(...snap.players.slice(0, 20).map((p) => {
+      const tr = el("tr", p.puuid && flashed.has(p.puuid) ? "flash" : "");
+      const who = el("td");
+      who.append(playerNode(p));
+      tr.append(el("td", "num", String(p.leaderboardRank)), who,
+                el("td", "num", String(p.rankedRating)), el("td", "num", String(p.numberOfWins)));
+      return tr;
+    }));
+    flashed.clear();
+  } catch { /* server restarting; the next event triggers a reload */ }
+}
+
+function scheduleBoardReload() {
+  clearTimeout(boardTimer);
+  boardTimer = setTimeout(loadBoard, 300);
+}
+
+// ---- websocket ----
+function subscribe() {
+  if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+    state.ws.send(JSON.stringify({ subscribe: [...state.feedRegions] }));
+  }
+}
+
+function connect() {
+  const ws = new WebSocket(`${location.protocol === "https:" ? "wss" : "ws"}://${location.host}/ws`);
+  state.ws = ws;
+  ws.onopen = () => {
+    state.retryMs = 500;
+    $("conn").textContent = "live";
+    $("conn").className = "pill live";
+    subscribe();
+  };
+  ws.onmessage = (msg) => {
+    let e;
+    try { e = JSON.parse(msg.data); } catch { return; }
+    if (!e.type) return;  // subscribe acks / errors
+    addEvent(e);
+    if (e.region === state.boardRegion) {
+      if (e.puuid) flashed.add(e.puuid);
+      scheduleBoardReload();
+    }
+  };
+  ws.onclose = () => {
+    $("conn").textContent = "reconnecting…";
+    $("conn").className = "pill";
+    setTimeout(connect, state.retryMs);
+    state.retryMs = Math.min(state.retryMs * 2, 10000);
+  };
+}
+
+// ---- controls ----
+function chip(label, pressed, onClick) {
+  const b = el("button", "chip", label);
+  b.type = "button";
+  b.setAttribute("aria-pressed", String(pressed));
+  b.addEventListener("click", onClick);
+  return b;
+}
+
+function renderFeedChips() {
+  const box = $("feed-regions");
+  box.replaceChildren(
+    chip("all", state.feedRegions.size === 0, () => { state.feedRegions.clear(); renderFeedChips(); applyFeedFilter(); }),
+    ...REGIONS.map((r) => chip(r, state.feedRegions.has(r), () => {
+      state.feedRegions.has(r) ? state.feedRegions.delete(r) : state.feedRegions.add(r);
+      renderFeedChips();
+      applyFeedFilter();
+    })));
+}
+
+function renderBoardChips() {
+  $("board-regions").replaceChildren(...REGIONS.map((r) => chip(r, r === state.boardRegion, () => {
+    state.boardRegion = r;
+    renderBoardChips();
+    loadBoard();
+  })));
+}
+
+async function init() {
+  renderFeedChips();
+  renderBoardChips();
+  try {
+    const health = await (await fetch("/health")).json();
+    $("mode").hidden = !health.mockMode;
+    $("mode").className = "pill mock";
+    const enabled = Object.keys(health.regions || {});
+    if (enabled.length && !enabled.includes(state.boardRegion)) { state.boardRegion = enabled[0]; renderBoardChips(); }
+    const recent = await (await fetch("/events?limit=50")).json();
+    recent.events.forEach((e) => addEvent(e, false));
+  } catch { /* render what we can; the socket will retry */ }
+  loadBoard();
+  connect();
+}
+
+init();
+</script>
+</body>
+</html>
