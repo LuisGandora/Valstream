@@ -8,15 +8,15 @@ response's headers. Everything is persisted in SQLite for history queries, and a
 lets the whole pipeline run without an API key. valstream only mirrors Riot's ladder; it never computes a rating or
 ranking of its own.
 
-> **Demo GIF:** _placeholder. Record the web UI in mock mode (`./valstream`, open <http://localhost:8080>) and drop
-> it here as `docs/demo.gif`._
+> **Demo GIF:** ![valstream demo](docs/demo.gif)
+
 
 ## Architecture
 
 ```mermaid
 flowchart LR
     subgraph Riot["Riot API (https://{region}.api.riotgames.com)"]
-        C["/val/content/v1/contents"]
+        C["/val/content/v1/contents"] 
         L["/val/ranked/v1/leaderboards/by-act/{actId}"]
         S["/val/status/v1/platform-data"]
     end
